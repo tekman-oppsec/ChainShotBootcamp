@@ -1,0 +1,26 @@
+{
+  "name": "Weekend3-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./index.js",
+    "ui": "browser-sync start --config bs-config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ethers": "^5.0.29",
+    "express": "^4.17.1",
+    "jade-bootstrap": "^1.0.14",
+    "pug": "^3.0.0"
+  }
+}

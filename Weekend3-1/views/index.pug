@@ -1,0 +1,78 @@
+extends layout
+
+block layout-content
+    div.row.text-sm-center
+        h1.p-5.bg-dark.text-white Ether Bl0X
+        hr.text-dark.p-1.font-weight-bold
+    div.row.col-sm-12.p-3
+        div.col-sm-2
+            div.card.h-100
+                img.card-img-top(src='/images/ethereum1.jpg')
+                div.card-body
+                    h5.card-title.text-sm-center= etherPrice
+        div.col-sm-5 
+            div.card.h-100 
+                h5.card-header= currentNetwork + " Latest Blocks"
+                input(type="hidden" name="currentNetwork" id="currentNetwork" value=currentNetwork)                
+                div.card.body.border-0.p-3
+                    table.table.table-striped 
+                        tr 
+                            th Block Number
+                            th.text-sm-center Miner Detail 
+                        each b in blocks 
+                            tr 
+                                td.a.link-primary(href="#" onclick="getBlock(this)")= b
+                                td.text-sm-center 
+                                    button.btn.btn-sm(type="button" onclick="getMiner(" + b + ")") 
+                                        i.fas.fa-user-cog
+                                
+        div.col-sm-5
+            div.card.h-100 
+                h5.card-header= currentNetwork + " Latest Transactions" 
+                div.card.body.border-0.p-3
+                    table.table.table-striped 
+                        tr 
+                            th Block Number 
+                            th.text-sm-center Transactions 
+                        each b in blocks 
+                            tr 
+                                td= b 
+                                td.text-sm-center 
+                                    button.btn.btn-sm(type="button" onclick="getTransactions(" + b + ")")
+                                        i.fas.fa-money-check 
+    div.row.col-sm-12.p-3
+        div.col-sm-2
+            div.card 
+                div.card-body 
+                    span.fw-bolder Change Network
+                    p
+                    form  
+                        select.form-select.form-select-sm(name="blockNetwork", id="blockNetwork")
+                            option(selected) Choose a Network
+                            option(value="https://mainnet.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Mainnet
+                            option(value="https://ropsten.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Ropsten
+                            option(value="https://kovan.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Kovan
+                            option(value="https://rinkeby.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Rinkeby
+                            option(value="https://goerli.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Gorli
+                        br
+                        button.btn.btn-sm.btn-primary(type="submit", id="btn_network") Change Network
+        div.col-sm-2
+            div.card.h-100
+                h5.card-header Wallet Balance Lookup 
+                div.card-body
+                    form(action="/getBalance", method="post", id="getBalanceForm")
+                        div.form-group.row.p-1 
+                            select.form-select.form-select-sm(name="networkSelect", id="networkSelect")
+                                option(selected) Choose a Network
+                                option(value="https://mainnet.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Mainnet
+                                option(value="https://ropsten.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Ropsten
+                                option(value="https://kovan.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Kovan
+                                option(value="https://rinkeby.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Rinkeby
+                                option(value="https://goerli.infura.io/v3/33087afce72c4533af64bfb6cf95719f") Gorli
+                        div.form-group.row.p-1 
+                            input.form-control.form-control-sm(type="text", name="projectSecret", id="projectSecret", placeholder="Project Secret")
+                        div.form-group.row.p-1 
+                            input.form-control.form-control-sm(type="text", name="walletAddress", id="walletAddress", placeholder="Wallet Address")
+                        div.form-group.row.p-1
+                            div.col-sm-12.text-sm-center 
+                                button.btn.btn-sm.btn-primary(type="submit", id="btn_balance") Balance Lookup

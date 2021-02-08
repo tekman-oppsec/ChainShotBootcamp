@@ -1,0 +1,14 @@
+extends layout 
+
+block layout-content 
+    div.row.text-sm-center
+        h1.p-5.bg-dark.text-white Ether Bl0X
+        hr.text-dark.p-1.font-weight-bold
+    div.row.col-sm-12.text-sm-center
+        div.col-sm-6.mx-auto         
+            h5.alert.alert-primary= balance
+            br
+            span.fw-bolder Today's Date: 
+            span.border.border-2.border-primary.rounded-pill.p-2= todayDate
+            span.p-2
+            a.btn.btn-sm.btn-primary(href="/" role="button") Home
